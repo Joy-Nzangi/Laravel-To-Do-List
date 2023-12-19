@@ -22,6 +22,11 @@
         <label class="align-top" for="description">Description:</label>
         <textarea class="py-3 px-4 bg-gray-100 rounded-xl" name="description">{{ $todo->description }}</textarea>
 
+{{-- *** EDIT Due Date *** --}}
+        <label for="due_date">Due Date:</label>
+        <input class="py-3 px-4 bg-gray-100 rounded-xl" type="date" name="due_date" value="{{ $todo->due_date }}" required>
+
+
 
     <button class="w-28 py-4 px-8 bg-blue-500 text-white rounded-xl" type="submit">Update</button>
 </form>

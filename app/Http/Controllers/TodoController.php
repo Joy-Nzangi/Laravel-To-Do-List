@@ -73,6 +73,7 @@ class TodoController extends Controller
             $attributes = $request->validate([
                 'title' => 'required',
                 'description' => 'required',
+                'due_date' => 'required|date',
             ]);
     
             $todo->update($attributes);
