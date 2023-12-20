@@ -56,6 +56,7 @@
 {{-- *** List of Created new List *** --}}
     <div class="mt-2 container">
         @foreach ($todos as $todo)
+        @if ($todo->user_id === auth()->id())
             <div id="todo-{{ $todo->id }}" class= "py-4 flex items-center border-b border-gray-300 px-3">
                 <div class="flex-1 pr-8">
                     <h3 class="text-lg font-semibold">{{$todo->title}}</h3>
@@ -63,7 +64,7 @@
                     <p class="text-gray-400">Due Date: {{$todo->due_date}}</p>
                     <p class="text-gray-400">Created at: {{$todo->created_at}}</p>
                 </div>  
-
+        
 
 
                 
@@ -110,8 +111,9 @@
             </button> 
         </form>
     </div>
-</div>
+</div>        @endif
 @endforeach
+
 </div>
 
 {{-- LOGOUT Button --}}

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->boolean('isDone')->default(false);
             $table->date('due_date')->nullable();
-            // $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 

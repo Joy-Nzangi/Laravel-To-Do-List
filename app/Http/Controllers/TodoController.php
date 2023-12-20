@@ -36,15 +36,21 @@ class TodoController extends Controller
 
     
     //Split functionality from routes in web.php
-    public function index(){
-        $todos = Todo::all();
+    //Previous public function index(){
+    //     $todos = Todo::all();
 
-        return view('welcome', ['todos' => $todos]);
-    }
+    //     return view('welcome', ['todos' => $todos]);
+    // }
+    public function index()
+{
+    $todos = auth()->user()->coolTodos;
+
+    return view('welcome', ['todos' => $todos]);
+}
 
 
 
-    //Validating the fields
+    //Creating a new post & Validating the fields
     public function store(Request $request) {
         $attributes = $request->validate([
             'title' => 'required', 
@@ -54,6 +60,9 @@ class TodoController extends Controller
 
                 // Adding the current date and time to the attributes
                 $attributes['created_at'] = now();
+
+                 // Adding the authenticated user's ID to the attributes
+                $attributes['user_id'] = auth()->id();
 
                 Todo::create($attributes);
 

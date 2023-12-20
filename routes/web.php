@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Todo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,14 @@ use App\Http\Controllers\TodoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //Relationship with user and list item
+    $posts = [];
+    if (auth()->check()){
+        
+    // $todos = auth()->user()->coolTodos()->latest()->get();
+    }
+
+    return view('welcome', ['todos' => $todos]);
 });
 
 
