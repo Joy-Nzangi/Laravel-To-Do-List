@@ -24,7 +24,7 @@
         <h4 class="font-thin text-center mb-8">You will Stop Procastinating!</h4>
 
         <h4 class="font-bold text-2xl text-center">Mpesa</h4>
-        <h4 class="font-thin text-center ">Cost: Ksh. 10</h4>
+        <h4 class="font-thin text-center ">Cost: Ksh. 1</h4>
 
         {{-- MPESA  --}}
         <div class="mb-6">

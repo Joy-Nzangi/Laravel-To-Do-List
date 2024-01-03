@@ -1,8 +1,8 @@
-# Laravel TO DO LIST
+# Laravel TO DO LIST with Mpesa API
 
 A to-do list app made with Laravel. Filter your items by oldest, newest, complete, and incomplete. The list items have a title, description, due date, and created date and time. Moreover, a user is able to edit/update, change the status (complete or incomplete), and lastly, delete an item.
 
-Users have to log in or register to use the app.
+Users register to purchase the app, then on the user can just log in to acess the to do list app.
 
 ## Table of Contents
 
@@ -15,6 +15,8 @@ Users have to log in or register to use the app.
     -   [2.5. Install PostgreSQL](#25-install-postgresql)
     -   [2.6. Create an Empty Database in PostgreSQL](#26-create-an-empty-database-in-postgresql)
     -   [2.7. Run Laravel Migrations](#27-run-laravel-migrations)
+    -   [2.8. Smodav/mpesa installation](#28-smodavmpesa-installation)
+    -   [2.9. Configuration](#29-configuration)
 -   [3. Usage](#3-usage)
     -   [3.1. Run npm run dev](#31-run-npm-run-dev)
     -   [3.2. Run php artisan serve](#32-run-php-artisan-serve)
@@ -80,6 +82,104 @@ Run the following command to migrate Laravel database definitions to the Postgre
 php artisan migrate
 
 ```
+
+### 2.8. Smodav/mpesa installation
+
+Run `composer require smodav/mpesa` to get the latest stable version of the package.
+
+### 2.9. Configuration
+
+The smodav package allows you to have multiple accounts. Each account will have its specific credentials and endpoints that are independent of the rest.
+You will be required to set the default account to be used for all transactions, which you can override on each request you make. create an app in safaricom daraja and paste in the required fileds. The package comes
+with two default accounts that you can modify.
+
+```
+/*
+|--------------------------------------------------------------------------
+| Default Account
+|--------------------------------------------------------------------------
+|
+| This is the default account to be used when none is specified.
+*/
+
+'default' => 'staging',
+
+/*
+|--------------------------------------------------------------------------
+| File Cache Location
+|--------------------------------------------------------------------------
+|
+| When using the Native Cache driver, this will be the relative directory
+| where the cache information will be stored.
+*/
+
+'cache_location' => '../cache',
+
+/*
+|--------------------------------------------------------------------------
+| Accounts
+|--------------------------------------------------------------------------
+|
+| These are the accounts that can be used with the package. You can configure
+| as many as needed. Two have been setup for you.
+|
+| Sandbox: Determines whether to use the sandbox, Possible values: sandbox | production
+| Initiator: This is the username used to authenticate the transaction request
+| LNMO:
+|    shortcode: The till number
+|    passkey: The passkey for the till number
+|    callback: Endpoint that will be be queried on completion or failure of the transaction.
+|
+*/
+
+'accounts' => [
+    'staging' => [
+        'sandbox' => true,
+        'key' => 'your development consumer key',
+        'secret' => 'your development consumer secret',
+        'initiator' => 'your development username',
+        'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        'lnmo' => [
+            'paybill' => 'your development paybill number',
+            'shortcode' => 'your development business code',
+            'passkey' => 'your development passkey',
+            'callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        ]
+    ],
+
+    'paybill_1' => [
+        'sandbox' => false,
+        'key' => 'your production consumer key',
+        'secret' => 'your production consumer secret',
+        'initiator' => 'your production username',
+        'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        'lnmo' => [
+            'paybill' => 'your production paybill number',
+            'shortcode' => 'your production business code',
+            'passkey' => 'your production passkey',
+            'callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        ]
+    ],
+
+    'paybill_2' => [
+        'sandbox' => false,
+        'key' => 'your production consumer key',
+        'secret' => 'your production consumer secret',
+        'initiator' => 'your production username',
+        'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        'lnmo' => [
+            'paybill' => 'your production paybill number',
+            'shortcode' => 'your production business code',
+            'passkey' => 'your production passkey',
+            'callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+        ]
+    ],
+],
+```
+
+You can add as many accounts as required and switch the connection using the method `usingAccount` on `STK`, `Register` and `Simulate` as shown below.
+
+Also, note the difference between the `business shortcode` and your `paybill number` in the configuration as getting them wrong will cost you a lot of time debugging.
 
 ## 3. Usage
 
