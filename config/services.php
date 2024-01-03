@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'mpesa' => [
+    //     'base_uri' => 'https://sandbox.safaricom.co.ke/',
+    //     'cert_path' => 'D:\Joy\Laravel Tutorial\Mpesa by IanKumu\Payments-main\cacert.pem',
+    //     // other configuration...
+    // ],
+
 ];

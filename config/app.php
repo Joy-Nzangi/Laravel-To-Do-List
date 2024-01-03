@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        SmoDav\Mpesa\Laravel\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -183,6 +184,10 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'STK'       => SmoDav\Mpesa\Laravel\Facades\STK::class,
+    'Simulate'  => SmoDav\Mpesa\Laravel\Facades\Simulate::class,
+    'Registrar' => SmoDav\Mpesa\Laravel\Facades\Registrar::class,
+    'Identity'  => SmoDav\Mpesa\Laravel\Facades\Identity::class,
     ])->toArray(),
 
 ];
